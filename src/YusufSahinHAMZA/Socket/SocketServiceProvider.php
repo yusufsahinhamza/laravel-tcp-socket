@@ -1,6 +1,6 @@
 <?php
 
-namespace Parsidev\Socket;
+namespace YusufSahinHAMZA\Socket;
 
 use Illuminate\Support\ServiceProvider;
 

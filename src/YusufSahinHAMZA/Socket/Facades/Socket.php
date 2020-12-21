@@ -1,6 +1,6 @@
 <?php
 
-namespace Parsidev\Socket\Facades;
+namespace YusufSahinHAMZA\Socket\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

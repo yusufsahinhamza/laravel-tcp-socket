@@ -3,11 +3,11 @@ Laravel TCP Socket
 
 installation
 ------------
-For install this package Edit your project's ```composer.json``` file to require parsidev/tcp-socket
+For install this package Edit your project's ```composer.json``` file to require yusufsahinhamza/laravel-tcp-socket
 
 ```php
 "require": {
-    "parsidev/tcp-socket": "dev-master"
+    "yusufsahinhamza/laravel-tcp-socket": "dev-master"
 },
 ```
 Now, update Composer:
@@ -16,15 +16,15 @@ composer update
 ```
 Once composer is finished, you need to add the service provider. Open ```config/app.php```, and add a new item to the providers array.
 ```
-'Parsidev\Socket\SocketServiceProvider',
+'YusufSahinHAMZA\Socket\SocketServiceProvider',
 ```
 Next, add a Facade for more convenient usage. In ```config/app.php``` add the following line to the aliases array:
 ```
-'Socket' => 'Parsidev\Socket\Facades\Socket',
+'Socket' => 'YusufSahinHAMZA\Socket\Facades\Socket',
 ```
 Publish config files:
 ```
-php artisan vendor:publish --provider="Parsidev\Socket\SocketServiceProvider"
+php artisan vendor:publish --provider="YusufSahinHAMZA\Socket\SocketServiceProvider"
 ```
 for change username, password and other configuration change ```config/tcpsocket.php```
 
