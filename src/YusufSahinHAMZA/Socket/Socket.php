@@ -80,17 +80,17 @@ class Socket
         $this->protocol = null;
     }
 
-    public function sendMessage($socket, $message)
+    public function sendMessage($message)
     {
         $length = strlen($message);
-        $sent = socket_write($socket, $message, $length);
+        $sent = socket_write($this->socket, $message, $length);
         if (!$sent) {
             $errorCode = socket_last_error();
             $errorMessage = socket_strerror($errorCode);
             throw new RuntimeException($errorMessage, $errorCode);
         }
         $out = '';
-        while($out = @socket_read($socket, 5120)) {
+        while($out = @socket_read($this->socket, 5120)) {
             if($out = trim($out))
                 break;
         }
