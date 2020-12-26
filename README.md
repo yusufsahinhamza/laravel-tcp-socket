@@ -1,13 +1,13 @@
 Laravel TCP Socket
 ==========
 
-installation
+Installation
 ------------
 For install this package Edit your project's ```composer.json``` file to require yusufsahinhamza/laravel-tcp-socket
 
 ```php
 "require": {
-    "yusufsahinhamza/laravel-tcp-socket": "dev-master"
+    "yusufsahinhamza/laravel-tcp-socket": "master"
 },
 ```
 Now, update Composer:
@@ -49,11 +49,15 @@ $socket = Socket::connect($ip, $port);
 
 ### Disconnect from Server
 ```php
-Socket::disconnect($socket);
+Socket::disconnect();
 ```
 
 ### Send Message
 ```php
 Socket::sendMessage('test message'); //send message to connected server
-Socket::sendMessageTo('test message', 'server ip', server port) // send message to a socket
 ```
+
+Disclaimer
+-----
+
+This repository is basically for my personal use. All responsibility is yours if you want to use it.

@@ -34,14 +34,12 @@ class Socket
         if (!is_null($protocol))
             $this->protocol = $protocol;
 
-
         if (!($this->socket = socket_create(AF_INET, SOCK_STREAM, $this->protocol))) {
             $errorcode = socket_last_error();
             $errormsg = socket_strerror($errorcode);
             $this->isConnected = false;
             throw new RuntimeException($errormsg, $errorcode);
         }
-
 
         if (!socket_connect($this->socket, $this->ip, intval($this->port))) {
             $errorcode = socket_last_error();
@@ -71,10 +69,10 @@ class Socket
         }
     }
 
-    public function disconnect($socket)
+    public function disconnect()
     {
         //socket_shutdown($socket, 2);
-        socket_close($socket);
+        socket_close($this->socket);
         $this->ip = null;
         $this->port = null;
         $this->protocol = null;
@@ -90,26 +88,11 @@ class Socket
             throw new RuntimeException($errorMessage, $errorCode);
         }
         $out = '';
-        while($out = @socket_read($this->socket, 5120)) {
-            if($out = trim($out))
-                break;
+        while($resp = @socket_read($this->socket, 1024)) {
+            $out .= $resp;
+            if (strpos($out, "\n") !== false) break;
         }
         return $out != false? $out : "No Data!";
     }
 
-    public function sendMessageTo($socket, $message, $ip, $port)
-    {
-        $result = socket_sendto($socket, $message, strlen($message), 0, $ip, $port);
-        if (!$result) {
-            $errorcode = socket_last_error();
-            $errormsg = socket_strerror($errorcode);
-            throw new RuntimeException($errormsg, $errorcode);
-        }
-        $out = '';
-        while($out = @socket_read($socket, 5120)) {
-            if($out = trim($out))
-                break;
-        }
-        return $out;
-    }
 }
